@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "more-difficult",
+	"version": "${version}",
+	"name": "more difficult monsters",
+	"description": "A lot of monster-related mechanics will change.\n\n",
+	"authors": [
+		"IvanPunk"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/more-difficult/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "com.moredifficult.MoreDifficulty"
+		],
+		"client": [
+			"com.moredifficult.client.MoreDifficultClient"
+		]
+	},
+	"mixins": [
+		"more-difficult.mixins.json",
+		{
+			"config": "more-difficult.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
