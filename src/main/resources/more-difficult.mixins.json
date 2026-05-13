@@ -7,6 +7,7 @@
     "AddNewWeaponForZombie",
     "CaveSpiderDebuffMixin",
     "CaveSpiderFinalizeSpawnMixin",
+    "ChangeChanceForArmor",
     "CheckStraySpawnRulesMixin",
     "CheckSurfaceMonstersSpawnRulesMixin",
     "CreateBossCreeperMob",
@@ -18,12 +19,15 @@
     "ExplodeCreeperMixin",
     "getControllingPassengerMixin",
     "HuskDebuff",
-    "IncreaseChanceForArmor",
     "IncreaseMonsters",
     "ParchedDebuffMixin",
     "SpawnLingeringCloudRemoveMixin",
     "SpiderFinalizeSpawnMixin",
-    "StrayDebuff"
+    "StrayDebuff",
+    "hell.PiglinsArmorBuff",
+    "hell.PiglinsArmorEnchantsBuff",
+    "hell.PiglinsArmorEnchantsIncreaseChance",
+    "hell.WitherSkeletonBuff"
   ],
   "injectors": {
     "defaultRequire": 1
