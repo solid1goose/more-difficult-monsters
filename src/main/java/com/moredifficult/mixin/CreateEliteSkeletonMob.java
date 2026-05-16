@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
 @Mixin(Mob.class)
-public class CreateBossSkeletonMob {
+public class CreateEliteSkeletonMob {
     @Inject(
             method = "finalizeSpawn",
             at = @At("RETURN")
@@ -36,7 +36,7 @@ public class CreateBossSkeletonMob {
         if (
                 MoreDifficulty.enable() &&
                 self instanceof Skeleton &&
-                random.nextFloat() < 0.03F + (MoreDifficulty.difficultNumbery * 0.001F)
+                random.nextFloat() < MoreDifficulty.baseEliteChance + (MoreDifficulty.difficultNumbery * 0.001F)
         ) {
             self.addEffect(
                     new MobEffectInstance(
@@ -57,7 +57,8 @@ public class CreateBossSkeletonMob {
                     )
             );
             HelpFunctions.setAttributeForEliteMob(self, Attributes.SCALE, 0.30F);
-            HelpFunctions.setAttributeForEliteMob(self, Attributes.MAX_HEALTH, 70.0F);
+            HelpFunctions.setAttributeForEliteMob(self, Attributes.MAX_HEALTH, 10.0F);
+            self.setHealth(self.getMaxHealth());
             HelpFunctions.setJockey(
                     self,
                     EntityType.SKELETON,

@@ -17,7 +17,7 @@ public class IncreaseMonsters {
     private void increaseMonsterCap(CallbackInfoReturnable<Integer> cir) {
         MobCategory self = (MobCategory)(Object)this;
         if (self == MobCategory.MONSTER) {
-            cir.setReturnValue(70 + Math.max(Math.round(MoreDifficulty.difficultNumbery * 5), 100));
+            cir.setReturnValue(70 + Math.round(MoreDifficulty.difficultNumbery));
         }
     }
 }

@@ -86,6 +86,14 @@ public class SpawnModification {
                             ctx.getMobSpawnSettings().removeSpawnsOfEntityType(EntityType.SKELETON);
                         }
                 );
+        BiomeModifications.create(Identifier.fromNamespaceAndPath("more-difficult", "reduce-stray-spawn"))
+                .add(
+                        ModificationPhase.REMOVALS,
+                        BiomeSelectors.foundInOverworld(),
+                        ctx -> {
+                            ctx.getMobSpawnSettings().removeSpawnsOfEntityType(EntityType.STRAY);
+                        }
+                );
     }
 
     public static void addNewSpawn() {
@@ -110,13 +118,13 @@ public class SpawnModification {
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD),
                 MobCategory.MONSTER,
                 EntityType.SKELETON,
-                30,
+                50,
                 1,
                 2);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD),
                 MobCategory.MONSTER,
                 EntityType.CAVE_SPIDER,
-                40,
+                65,
                 1,
                 2);
     }

@@ -19,10 +19,7 @@ public class ExplodeCreeperMixin {
 
     private float modifyExplosionRadius(float explosionMultiplier) {
         Creeper creeper = (Creeper)(Object)this;
-        AttributeInstance attr = creeper.getAttribute(Attributes.SCALE);
-        if (
-        attr != null &&
-        attr.hasModifier(Identifier.fromNamespaceAndPath("more-difficult", "elite")))
+        if (HelpFunctions.isEliteMob(creeper))
         {
             return explosionMultiplier * 1.5F;
         }

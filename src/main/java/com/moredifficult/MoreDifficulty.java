@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MoreDifficulty implements ModInitializer {
+	//800 66 4240
 	public static float difficultNumbery = 0.5F;
+	public static float baseEliteChance = 0.03F;
 	public static final EntityType[] monsters = {
 		EntityType.CREEPER,
 		EntityType.SKELETON,

@@ -37,7 +37,7 @@ public class WitherSkeletonBuff {
             WitherSkeletonWeaponBuff.addNewWeapon(witherSkeleton);
             RandomSource random = RandomSource.create();
             //eliteSpawn
-            if (random.nextFloat() < 0.05 + (MoreDifficulty.difficultNumbery * 0.005)){
+            if (random.nextFloat() < MoreDifficulty.baseEliteChance + (MoreDifficulty.difficultNumbery * 0.005)){
                 HelpFunctions.setAttributeForEliteMob(
                         self,
                         Attributes.SCALE,
@@ -46,8 +46,9 @@ public class WitherSkeletonBuff {
                 HelpFunctions.setAttributeForEliteMob(
                         self,
                         Attributes.MAX_HEALTH,
-                        100.0F
+                        20.0F
                 );
+                self.setHealth(self.getMaxHealth());
                 self.addEffect(
                         new MobEffectInstance(
                                 MobEffects.SPEED,

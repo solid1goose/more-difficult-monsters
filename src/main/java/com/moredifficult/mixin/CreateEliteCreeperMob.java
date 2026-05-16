@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Mob.class)
-public class CreateBossCreeperMob {
+public class CreateEliteCreeperMob {
     @Inject(
             method = "finalizeSpawn",
             at = @At("RETURN")
@@ -31,9 +31,10 @@ public class CreateBossCreeperMob {
         Mob self = (Mob)(Object)this;
         RandomSource random = RandomSource.create();
         if (MoreDifficulty.enable() && self instanceof Creeper) {
-            if (random.nextFloat() < 0.02F + (MoreDifficulty.difficultNumbery * 0.002)) {
+            if (random.nextFloat() < MoreDifficulty.baseEliteChance + (MoreDifficulty.difficultNumbery * 0.01)) {
                 HelpFunctions.setAttributeForEliteMob(self, Attributes.SCALE, 0.4F);
-                HelpFunctions.setAttributeForEliteMob(self, Attributes.MAX_HEALTH, 70.0F);
+                HelpFunctions.setAttributeForEliteMob(self, Attributes.MAX_HEALTH, 20.0F);
+                self.setHealth(self.getMaxHealth());
             }
         }
     }

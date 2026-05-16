@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Mob.class)
-public class CreateBossZombieMob {
+public class CreateEliteZombieMob {
     @Inject(
             method = "finalizeSpawn",
             at = @At("RETURN")
@@ -51,7 +51,7 @@ public class CreateBossZombieMob {
                         MobEffects.RESISTANCE,
                         1.0F,
                         1.0F,
-                        2,
+                        1,
                         false);
                 HelpFunctions.applyNewEffectForMob(
                         mob,
@@ -68,7 +68,7 @@ public class CreateBossZombieMob {
                         1,
                         false);
                 HelpFunctions.setAttributeForEliteMob(mob, Attributes.SCALE,0.35F);
-                HelpFunctions.setAttributeForEliteMob(mob, Attributes.MAX_HEALTH,120.0F);
+                HelpFunctions.setAttributeForEliteMob(mob, Attributes.MAX_HEALTH,40.0F);
             }
             //MINI BOSS
             else if (random.nextFloat() < 0.02 + (diff * 0.01)) {
@@ -103,8 +103,9 @@ public class CreateBossZombieMob {
                         1,
                         false);
                 HelpFunctions.setAttributeForEliteMob(mob, Attributes.SCALE,0.1F);
-                HelpFunctions.setAttributeForEliteMob(mob, Attributes.MAX_HEALTH,80.0F);
+                HelpFunctions.setAttributeForEliteMob(mob, Attributes.MAX_HEALTH,20.0F);
             }
         }
+        mob.setHealth(mob.getMaxHealth());
     }
 }
