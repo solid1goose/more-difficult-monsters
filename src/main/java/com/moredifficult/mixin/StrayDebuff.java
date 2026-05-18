@@ -1,5 +1,6 @@
 package com.moredifficult.mixin;
 
+import com.moredifficult.ServerConfig;
 import net.minecraft.world.entity.monster.skeleton.Stray;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,6 +17,6 @@ public class StrayDebuff {
             index = 1
     )
     private int strayDebuff(int duration) {
-        return 100;
+        return ServerConfig.addNewMobsInSpawnPool? 100: duration;
     }
 }

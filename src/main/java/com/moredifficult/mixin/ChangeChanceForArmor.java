@@ -1,6 +1,7 @@
 package com.moredifficult.mixin;
 
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.Mob;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +21,9 @@ public class ChangeChanceForArmor {
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/world/DifficultyInstance;getSpecialMultiplier()F"))
     private float redirectSpecialMultiplier(DifficultyInstance difficulty) {
-        return MoreDifficulty.enable() ? 0.2F + MoreDifficulty.difficultNumbery * 0.1F: difficulty.getSpecialMultiplier();
+        if (ServerConfig.baseChanceForMobArmor == 0.0) {
+            return 0.0F;
+        }
+        return MoreDifficulty.enable() ? ServerConfig.baseChanceForMobArmor + ServerConfig.difficultNumbery * 0.1F: difficulty.getSpecialMultiplier();
     }
 }

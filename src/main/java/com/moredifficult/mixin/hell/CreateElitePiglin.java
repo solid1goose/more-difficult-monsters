@@ -2,6 +2,7 @@ package com.moredifficult.mixin.hell;
 
 import com.moredifficult.HelpFunctions;
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -36,7 +37,7 @@ public class CreateElitePiglin {
     {
         RandomSource random = RandomSource.create();
         if (spawnReason == EntitySpawnReason.JOCKEY) return;
-        if (MoreDifficulty.enable() && random.nextFloat() < MoreDifficulty.baseEliteChance + (MoreDifficulty.difficultNumbery * 0.01)) {
+        if (ServerConfig.enableElite && random.nextFloat() < ServerConfig.baseEliteChance + (ServerConfig.difficultNumbery * 0.01)) {
             Piglin self = (Piglin)(Object)this;
             Piglin jokey = EntityType.PIGLIN.create(self.level(), EntitySpawnReason.JOCKEY);
             if (jokey != null){
@@ -50,13 +51,6 @@ public class CreateElitePiglin {
                         self,
                         Attributes.SCALE,
                         0.2F
-                );
-                self.addEffect(
-                        new MobEffectInstance(
-                                MobEffects.RESISTANCE,
-                                Integer.MAX_VALUE,
-                                1
-                        )
                 );
                 ItemStack itemStack = new ItemStack(Items.GOLDEN_AXE);
                 self.setItemSlot(EquipmentSlot.MAINHAND, itemStack);

@@ -1,6 +1,6 @@
 package com.moredifficult.mixin;
 
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.world.entity.MobCategory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,7 +17,7 @@ public class IncreaseMonsters {
     private void increaseMonsterCap(CallbackInfoReturnable<Integer> cir) {
         MobCategory self = (MobCategory)(Object)this;
         if (self == MobCategory.MONSTER) {
-            cir.setReturnValue(70 + Math.round(MoreDifficulty.difficultNumbery));
+            cir.setReturnValue(70 + Math.round(ServerConfig.difficultNumbery) + ServerConfig.addMoreMobs);
         }
     }
 }

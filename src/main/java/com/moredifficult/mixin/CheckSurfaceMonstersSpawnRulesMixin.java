@@ -1,5 +1,6 @@
 package com.moredifficult.mixin;
 
+import com.moredifficult.ServerConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntitySpawnReason;
@@ -23,7 +24,7 @@ public class CheckSurfaceMonstersSpawnRulesMixin {
             EntityType<T> type, ServerLevelAccessor level,
             EntitySpawnReason spawnReason, BlockPos pos,
             RandomSource random, CallbackInfoReturnable<Boolean> cir) {
-        if (type == EntityType.HUSK || type == EntityType.STRAY || type == EntityType.PARCHED) {
+        if (ServerConfig.addNewMobsInSpawnPool && type == EntityType.HUSK || type == EntityType.STRAY || type == EntityType.PARCHED) {
             cir.setReturnValue(Monster.checkMonsterSpawnRules(type, level, spawnReason, pos, random));
         }
     }

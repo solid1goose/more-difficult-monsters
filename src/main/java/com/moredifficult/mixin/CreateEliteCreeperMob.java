@@ -2,6 +2,7 @@ package com.moredifficult.mixin;
 
 import com.moredifficult.HelpFunctions;
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntitySpawnReason;
@@ -30,8 +31,8 @@ public class CreateEliteCreeperMob {
     {
         Mob self = (Mob)(Object)this;
         RandomSource random = RandomSource.create();
-        if (MoreDifficulty.enable() && self instanceof Creeper) {
-            if (random.nextFloat() < MoreDifficulty.baseEliteChance + (MoreDifficulty.difficultNumbery * 0.01)) {
+        if (self instanceof Creeper) {
+            if (ServerConfig.enableElite && random.nextFloat() < ServerConfig.baseEliteChance + (ServerConfig.difficultNumbery * 0.01)) {
                 HelpFunctions.setAttributeForEliteMob(self, Attributes.SCALE, 0.4F);
                 HelpFunctions.setAttributeForEliteMob(self, Attributes.MAX_HEALTH, 20.0F);
                 self.setHealth(self.getMaxHealth());

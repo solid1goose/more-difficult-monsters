@@ -1,6 +1,7 @@
 package com.moredifficult.mixin;
 
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,16 +15,16 @@ public class AddNewArmorForMobs {
     @Redirect(method = "populateDefaultEquipmentSlots",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/util/RandomSource;nextInt(I)I"))
     private int redirectArmorTypeInit(RandomSource instance, int bound) {
-        if (MoreDifficulty.difficultNumbery == 0.0F) {
+        if (!MoreDifficulty.enable()) {
             return 0;
         }
         LivingEntity self = (LivingEntity)(Object)this;
         int armorType = instance.nextInt(bound);
 
         if (self.level().getDifficulty() == Difficulty.HARD) {
-            int numberOfPasses = Math.round(MoreDifficulty.difficultNumbery);
-            for (int j = 0; j < numberOfPasses * 4; j++) {
-                if (instance.nextFloat() < 0.05F) {
+            int numberOfPasses = Math.round(ServerConfig.difficultNumbery) + ServerConfig.increaseMonsterArmor;
+            for (int j = 0; j < numberOfPasses; j++) {
+                if (instance.nextFloat() < 0.15F) {
                     armorType++;
                 }
             }

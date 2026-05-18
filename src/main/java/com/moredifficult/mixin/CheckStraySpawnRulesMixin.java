@@ -1,9 +1,11 @@
 package com.moredifficult.mixin;
 
+import com.moredifficult.ServerConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.skeleton.Stray;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,6 +21,8 @@ public class CheckStraySpawnRulesMixin {
             cancellable = true
     )
     private static void checkStraySpawnRules(EntityType<Stray> type, ServerLevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(true);
+        if (ServerConfig.addNewMobsInSpawnPool) {
+            cir.setReturnValue(Monster.checkMonsterSpawnRules(type, level, spawnReason, pos, random));
+        }
     }
 }

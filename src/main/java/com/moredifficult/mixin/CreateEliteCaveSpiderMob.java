@@ -2,6 +2,7 @@ package com.moredifficult.mixin;
 
 import com.moredifficult.HelpFunctions;
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,7 +31,7 @@ public class CreateEliteCaveSpiderMob {
             CallbackInfoReturnable<SpawnGroupData> cir)
     {
         RandomSource random = RandomSource.create();
-        if(MoreDifficulty.enable() && random.nextFloat() < MoreDifficulty.baseEliteChance + MoreDifficulty.difficultNumbery * 0.01){
+        if(ServerConfig.enableElite && random.nextFloat() < ServerConfig.baseEliteChance + ServerConfig.difficultNumbery * 0.01){
             CaveSpider self = (CaveSpider)(Object)this;
             HelpFunctions.setAttributeForEliteMob(
                     self,
@@ -45,16 +46,9 @@ public class CreateEliteCaveSpiderMob {
             self.setHealth(self.getMaxHealth());
             self.addEffect(
                     new MobEffectInstance(
-                            MobEffects.RESISTANCE,
-                            Integer.MAX_VALUE,
-                            1
-                    )
-            );
-            self.addEffect(
-                    new MobEffectInstance(
                             MobEffects.SPEED,
                             Integer.MAX_VALUE,
-                            2 + Math.min(Math.round(MoreDifficulty.difficultNumbery / 10), 2)
+                            2 + Math.min(Math.round(ServerConfig.difficultNumbery / 10), 2)
                     )
             );
         }

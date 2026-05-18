@@ -1,7 +1,7 @@
 package com.moredifficult.mixin;
 
 import com.moredifficult.HelpFunctions;
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -22,9 +22,9 @@ public abstract class CreeperSpawnMixin {
             at = @At("RETURN")
     )
     private void onSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnReason, SpawnGroupData groupData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if((Object)this instanceof Creeper creeper && MoreDifficulty.difficultNumbery != 0.0F){
+        if((Object)this instanceof Creeper creeper && ServerConfig.difficultNumbery != 0.0F){
             RandomSource random = RandomSource.create();
-            boolean hideInvisibleParticles = random.nextFloat() < (0.15 * (MoreDifficulty.difficultNumbery * 0.02));
+            boolean hideInvisibleParticles = random.nextFloat() < (0.15 * (ServerConfig.difficultNumbery * 0.02));
             boolean appliedInvisibleEffect = HelpFunctions.applyNewEffectForMob(
                     creeper,
                     MobEffects.INVISIBILITY,
@@ -38,7 +38,7 @@ public abstract class CreeperSpawnMixin {
                     MobEffects.SPEED,
                     0.2F,
                     0.01F,
-                    2 + Math.round(MoreDifficulty.difficultNumbery / 30.0F),
+                    2 + Math.round(ServerConfig.difficultNumbery / 30.0F),
                     appliedInvisibleEffect);
 
         }

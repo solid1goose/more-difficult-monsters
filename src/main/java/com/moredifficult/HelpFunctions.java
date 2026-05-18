@@ -15,7 +15,6 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
@@ -27,7 +26,7 @@ public class HelpFunctions {
         RandomSource random = mob.getRandom();
         int effectPower = 0;
         for (int i = 0; i < repetitions; i++) {
-            if (random.nextFloat() < chance + (MoreDifficulty.difficultNumbery * difficultModification)) {
+            if (random.nextFloat() < chance + (ServerConfig.difficultNumbery * difficultModification)) {
                 effectPower++;
             }
         }
@@ -84,8 +83,8 @@ public class HelpFunctions {
         T jokeyInitialization = jokey.create(vehicle.level(), EntitySpawnReason.JOCKEY);
         if (jokeyInitialization != null) {
             jokeyInitialization.snapTo(vehicle.getX(), vehicle.getY(), vehicle.getZ(), vehicle.getYRot(), 0.0F);
-            jokeyInitialization.finalizeSpawn(level, difficulty, spawnReason, null);
             jokeyInitialization.startRiding(vehicle, false, false);
+            jokeyInitialization.finalizeSpawn(level, difficulty, spawnReason, null);
         }
         return jokeyInitialization;
     }

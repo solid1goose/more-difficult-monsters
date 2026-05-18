@@ -1,5 +1,6 @@
 package com.moredifficult.mixin;
 
+import com.moredifficult.ServerConfig;
 import net.minecraft.world.item.component.BlocksAttacks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,6 +13,6 @@ public class ShieldDurabilityBuff {
             at = @At("STORE"),
             name = "itemDamage")
     private int reduceShieldDamage(int itemDamage) {
-        return Math.max(1, itemDamage / 7);
+        return ServerConfig.shiedIncreaseDurability? Math.max(1, itemDamage / 7): itemDamage;
     }
 }

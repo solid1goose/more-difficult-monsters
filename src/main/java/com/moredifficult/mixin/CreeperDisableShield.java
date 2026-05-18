@@ -1,6 +1,7 @@
 package com.moredifficult.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import com.moredifficult.ServerConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Creeper;
@@ -28,9 +29,9 @@ public class CreeperDisableShield {
             @Local(name = "itemBlockingWith") ItemStack itemBlockingWith,
             @Local(name = "blocksAttacks") BlocksAttacks blocksAttacks) {
 
-        if (attacker instanceof Creeper) {
+        if (ServerConfig.creeperDisableShieldTime != 0.0F && attacker instanceof Creeper) {
             if (blocksAttacks != null) {
-                blocksAttacks.disable(level, (LivingEntity)(Object)this, COOLDOWN, itemBlockingWith);
+                blocksAttacks.disable(level, (LivingEntity)(Object)this, ServerConfig.creeperDisableShieldTime, itemBlockingWith);
             }
         }
     }

@@ -2,6 +2,7 @@ package com.moredifficult.mixin.hell;
 
 import com.moredifficult.HelpFunctions;
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.monster.piglin.Piglin;
@@ -27,11 +28,11 @@ public class PiglinsArmorEnchantsBuff {
         int thornsLevel = 0;
         RandomSource randomSource = RandomSource.create();
         for (int i = 0; i < 4; i++){
-            if (randomSource.nextFloat() < 0.2F + (MoreDifficulty.difficultNumbery * 0.1F) ) {
+            if (randomSource.nextFloat() < 0.2F + (ServerConfig.difficultNumbery * 0.1F) ) {
                 protectionLevel++;
             }
         }
-        if (randomSource.nextFloat() < 0.1F + MoreDifficulty.difficultNumbery * 0.005F) {
+        if (randomSource.nextFloat() < 0.1F + ServerConfig.difficultNumbery * 0.005F) {
             thornsLevel++;
         }
         if(item != null && protectionLevel > 0) {

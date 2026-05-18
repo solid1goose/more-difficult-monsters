@@ -1,6 +1,6 @@
 package com.moredifficult.mixin;
 
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntitySpawnReason;
@@ -24,7 +24,7 @@ public class CaveSpiderFinalizeSpawnMixin {
     private void caveSpiderFinalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnReason, SpawnGroupData groupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         LivingEntity spider = ((LivingEntity)(Object)this);
         RandomSource random = spider.getRandom();
-        if (random.nextInt(100) < 17 + Math.round(MoreDifficulty.difficultNumbery) * 3) {
+        if (random.nextInt(100) < 17 + Math.round(ServerConfig.difficultNumbery) * 3) {
             Skeleton startSkeleton = EntityType.SKELETON.create(spider.level(), EntitySpawnReason.JOCKEY);
             if (startSkeleton != null) {
                 startSkeleton.snapTo(spider.getX(), spider.getY(), spider.getZ(), spider.getYRot(), 0.0F);

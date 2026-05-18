@@ -3,6 +3,7 @@ package com.moredifficult.mixin.hell;
 
 import com.moredifficult.HelpFunctions;
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import com.moredifficult.WitherSkeletonWeaponBuff;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -33,11 +34,13 @@ public class WitherSkeletonBuff {
             CallbackInfoReturnable<SpawnGroupData> cir)
     {
         Mob self = (Mob)(Object)this;
-        if(MoreDifficulty.enable() && self instanceof WitherSkeleton witherSkeleton) {
-            WitherSkeletonWeaponBuff.addNewWeapon(witherSkeleton);
+        if(self instanceof WitherSkeleton witherSkeleton) {
+            if(ServerConfig.enableElite && MoreDifficulty.enable()){
+                WitherSkeletonWeaponBuff.addNewWeapon(witherSkeleton);
+            }
             RandomSource random = RandomSource.create();
             //eliteSpawn
-            if (random.nextFloat() < MoreDifficulty.baseEliteChance + (MoreDifficulty.difficultNumbery * 0.005)){
+            if (random.nextFloat() < ServerConfig.baseEliteChance + (ServerConfig.difficultNumbery * 0.005)){
                 HelpFunctions.setAttributeForEliteMob(
                         self,
                         Attributes.SCALE,

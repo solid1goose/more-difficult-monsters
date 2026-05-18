@@ -1,6 +1,7 @@
 package com.moredifficult.mixin.hell;
 
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -14,7 +15,7 @@ public class PiglinsArmorBuff {
    )
     private float piglinsArmorBuff(float constant){
        if (MoreDifficulty.enable()){
-           return 0.6F + (MoreDifficulty.difficultNumbery * 0.1F);
+           return 0.6F + (ServerConfig.difficultNumbery * 0.1F);
        }
        return constant;
    }

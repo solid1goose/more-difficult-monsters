@@ -1,6 +1,7 @@
 package com.moredifficult.mixin;
 
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
@@ -31,8 +32,9 @@ public class CreeperExplosionRework {
             float damage
     ) {
         LivingEntity self = (LivingEntity)(Object)this;
-        if (Arrays.stream(MoreDifficulty.monsters)
-                .anyMatch(type -> self.getType() == type)
+        if (
+                ServerConfig.creeperDoesLessDamageToMonsters &&
+                Arrays.stream(MoreDifficulty.monsters).anyMatch(type -> self.getType() == type)
                 && source.is(DamageTypeTags.IS_EXPLOSION)
                 && source.getEntity() instanceof Creeper) {
             return damage / 3.0F;

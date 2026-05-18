@@ -2,6 +2,7 @@ package com.moredifficult.mixin;
 
 import com.moredifficult.HelpFunctions;
 import com.moredifficult.MoreDifficulty;
+import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -25,11 +26,11 @@ public class CreateEliteZombieMob {
     )
     private void createBossMob(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnReason, SpawnGroupData groupData, CallbackInfoReturnable<SpawnGroupData> cir){
         Mob mob = (Mob)(Object)this;
-        if(MoreDifficulty.enable() && (mob instanceof Zombie || mob instanceof Husk)) {
+        if((mob instanceof Zombie || mob instanceof Husk)) {
             RandomSource random = RandomSource.create();
-            float diff = MoreDifficulty.difficultNumbery;
+            float diff = ServerConfig.difficultNumbery;
             //BOSS
-            if (random.nextFloat() < 0.01 + (diff * 0.005)) {
+            if (ServerConfig.enableElite && random.nextFloat() < ServerConfig.baseEliteChance * 0.5 + (diff * 0.005)) {
                 HelpFunctions.applyNewEffectForMob(
                         mob,
                         MobEffects.SPEED,
@@ -37,7 +38,7 @@ public class CreateEliteZombieMob {
                         1.0F,
                         2,
                         false);
-                if (MoreDifficulty.difficultNumbery > 8) {
+                if (ServerConfig.difficultNumbery > 8) {
                     HelpFunctions.applyNewEffectForMob(
                             mob,
                             MobEffects.STRENGTH,
@@ -71,7 +72,7 @@ public class CreateEliteZombieMob {
                 HelpFunctions.setAttributeForEliteMob(mob, Attributes.MAX_HEALTH,40.0F);
             }
             //MINI BOSS
-            else if (random.nextFloat() < 0.02 + (diff * 0.01)) {
+            else if (ServerConfig.enableElite && random.nextFloat() < ServerConfig.baseEliteChance + (diff * 0.01)) {
                 HelpFunctions.applyNewEffectForMob(
                         mob,
                         MobEffects.SPEED,
@@ -79,7 +80,7 @@ public class CreateEliteZombieMob {
                         1.0F,
                         1,
                         false);
-                if (MoreDifficulty.difficultNumbery > 10) {
+                if (ServerConfig.difficultNumbery > 10) {
                     HelpFunctions.applyNewEffectForMob(
                             mob,
                             MobEffects.STRENGTH,
@@ -88,13 +89,6 @@ public class CreateEliteZombieMob {
                             1,
                             false);
                 }
-                HelpFunctions.applyNewEffectForMob(
-                        mob,
-                        MobEffects.RESISTANCE,
-                        1.0F,
-                        1.0F,
-                        1,
-                        false);
                 HelpFunctions.applyNewEffectForMob(
                         mob,
                         MobEffects.JUMP_BOOST,
