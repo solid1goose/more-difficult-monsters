@@ -1,10 +1,6 @@
 package com.moredifficult.mixin;
 
 import com.moredifficult.HelpFunctions;
-import com.moredifficult.MoreDifficulty;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Creeper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

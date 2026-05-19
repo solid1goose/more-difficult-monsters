@@ -1,6 +1,6 @@
 package com.moredifficult.mixin.hell;
 
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.MoreDifficultMonsters;
 import com.moredifficult.ServerConfig;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.piglin.Piglin;
@@ -17,7 +17,7 @@ public class PiglinsArmorEnchantsIncreaseChance {
             index = 3
     )
     private float increaseChance(float constant){
-        if (MoreDifficulty.enable() && (Mob)(Object)this instanceof Piglin) {
+        if (MoreDifficultMonsters.enable() && (Mob)(Object)this instanceof Piglin) {
             return constant + (ServerConfig.difficultNumbery * 0.1F);
         }
         return constant;

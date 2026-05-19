@@ -1,7 +1,7 @@
 package com.moredifficult.mixin.hell;
 
 import com.moredifficult.HelpFunctions;
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.MoreDifficultMonsters;
 import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -19,7 +19,7 @@ public class PiglinsArmorEnchantsBuff {
             at = @At(value = "RETURN")
     )
     private void armorEnchantsBuff(EquipmentSlot slot, ItemStack itemStack, RandomSource random, CallbackInfo ci) {
-        if (MoreDifficulty.enable()){
+        if (MoreDifficultMonsters.enable()){
             return;
         }
         Piglin self =(Piglin)(Object)this;

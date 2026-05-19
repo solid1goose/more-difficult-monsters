@@ -1,6 +1,6 @@
 package com.moredifficult.mixin;
 
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.MoreDifficultMonsters;
 import com.moredifficult.ServerConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
@@ -9,9 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Arrays;
 
@@ -34,7 +32,7 @@ public class CreeperExplosionRework {
         LivingEntity self = (LivingEntity)(Object)this;
         if (
                 ServerConfig.creeperDoesLessDamageToMonsters &&
-                Arrays.stream(MoreDifficulty.monsters).anyMatch(type -> self.getType() == type)
+                Arrays.stream(MoreDifficultMonsters.monsters).anyMatch(type -> self.getType() == type)
                 && source.is(DamageTypeTags.IS_EXPLOSION)
                 && source.getEntity() instanceof Creeper) {
             return damage / 3.0F;

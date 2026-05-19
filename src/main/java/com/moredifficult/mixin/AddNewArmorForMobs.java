@@ -1,6 +1,6 @@
 package com.moredifficult.mixin;
 
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.MoreDifficultMonsters;
 import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -15,7 +15,7 @@ public class AddNewArmorForMobs {
     @Redirect(method = "populateDefaultEquipmentSlots",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/util/RandomSource;nextInt(I)I"))
     private int redirectArmorTypeInit(RandomSource instance, int bound) {
-        if (!MoreDifficulty.enable()) {
+        if (!MoreDifficultMonsters.enable()) {
             return 0;
         }
         LivingEntity self = (LivingEntity)(Object)this;

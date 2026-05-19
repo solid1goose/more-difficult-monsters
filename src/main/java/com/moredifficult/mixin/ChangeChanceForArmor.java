@@ -1,6 +1,6 @@
 package com.moredifficult.mixin;
 
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.MoreDifficultMonsters;
 import com.moredifficult.ServerConfig;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.Mob;
@@ -15,7 +15,7 @@ public class ChangeChanceForArmor {
     @ModifyConstant(method = "populateDefaultEquipmentSlots",
             constant = @Constant(floatValue = 0.15F))
     private float modifyArmorChance(float original) {
-        return  MoreDifficulty.enable() ? 1.0F: original;
+        return  MoreDifficultMonsters.enable() ? 1.0F: original;
     }
     @Redirect(method = "populateDefaultEquipmentSlots",
             at = @At(value = "INVOKE",
@@ -24,6 +24,6 @@ public class ChangeChanceForArmor {
         if (ServerConfig.baseChanceForMobArmor == 0.0) {
             return 0.0F;
         }
-        return MoreDifficulty.enable() ? ServerConfig.baseChanceForMobArmor + ServerConfig.difficultNumbery * 0.1F: difficulty.getSpecialMultiplier();
+        return MoreDifficultMonsters.enable() ? ServerConfig.baseChanceForMobArmor + ServerConfig.difficultNumbery * 0.1F: difficulty.getSpecialMultiplier();
     }
 }

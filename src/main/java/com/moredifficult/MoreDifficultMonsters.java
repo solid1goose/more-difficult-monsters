@@ -1,10 +1,9 @@
 package com.moredifficult;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.EntityType;
 
-public class MoreDifficulty implements ModInitializer {
+public class MoreDifficultMonsters implements ModInitializer {
 	public static final EntityType[] monsters = {
 		EntityType.CREEPER,
 		EntityType.SKELETON,
@@ -19,10 +18,6 @@ public class MoreDifficulty implements ModInitializer {
 	public void onInitialize() {
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			ServerConfig.load();
-		});
-
-		ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
-			ServerConfig.save();
 		});
 
 		if (ServerConfig.addNewMobsInSpawnPool) {

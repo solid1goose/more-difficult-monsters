@@ -1,6 +1,6 @@
 package com.moredifficult.mixin;
 
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.MoreDifficultMonsters;
 import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AddNewWeaponForZombie {
     @Inject(method = "populateDefaultEquipmentSlots", at = @At(value = "RETURN"))
     protected void newWeapon(RandomSource random, DifficultyInstance difficulty, CallbackInfo ci){
-        if (!MoreDifficulty.enable() || ServerConfig.baseChanceForMobWeapon == 0.0) {
+        if (!MoreDifficultMonsters.enable() || ServerConfig.baseChanceForMobWeapon == 0.0) {
             return;
         }
         LivingEntity zombie = ((LivingEntity)(Object)this);

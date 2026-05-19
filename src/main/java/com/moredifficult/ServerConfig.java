@@ -85,7 +85,11 @@ public class ServerConfig {
     }
 
     public static void load() {
-        if (!Files.exists(CONFIG_PATH)) return;
+        if (!Files.exists(CONFIG_PATH)) {
+            save();
+            return;
+        }
+
         try (Reader reader = Files.newBufferedReader(CONFIG_PATH)) {
             JsonObject json = GSON.fromJson(reader, JsonObject.class);
             for (Field f : ServerConfig.class.getFields()) {

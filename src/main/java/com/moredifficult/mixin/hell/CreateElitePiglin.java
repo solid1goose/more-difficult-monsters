@@ -1,12 +1,9 @@
 package com.moredifficult.mixin.hell;
 
 import com.moredifficult.HelpFunctions;
-import com.moredifficult.MoreDifficulty;
 import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;

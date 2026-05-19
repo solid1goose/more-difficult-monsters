@@ -2,7 +2,7 @@ package com.moredifficult.mixin.hell;
 
 
 import com.moredifficult.HelpFunctions;
-import com.moredifficult.MoreDifficulty;
+import com.moredifficult.MoreDifficultMonsters;
 import com.moredifficult.ServerConfig;
 import com.moredifficult.WitherSkeletonWeaponBuff;
 import net.minecraft.util.RandomSource;
@@ -35,7 +35,7 @@ public class WitherSkeletonBuff {
     {
         Mob self = (Mob)(Object)this;
         if(self instanceof WitherSkeleton witherSkeleton) {
-            if(ServerConfig.enableElite && MoreDifficulty.enable()){
+            if(ServerConfig.enableElite && MoreDifficultMonsters.enable()){
                 WitherSkeletonWeaponBuff.addNewWeapon(witherSkeleton);
             }
             RandomSource random = RandomSource.create();

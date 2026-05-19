@@ -1,7 +1,6 @@
 package com.moredifficult.mixin;
 
 import com.moredifficult.HelpFunctions;
-import com.moredifficult.MoreDifficulty;
 import com.moredifficult.ServerConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
