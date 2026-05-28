@@ -19,7 +19,6 @@ public class MoreDifficultMonsters implements ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			ServerConfig.load();
 			if (ServerConfig.addNewMobsInSpawnPool) {
-				System.out.println(ServerConfig.addNewMobsInSpawnPool);
 				SpawnModification.modificationMobSpawn();
 			}
 		});
