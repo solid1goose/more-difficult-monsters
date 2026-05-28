@@ -15,7 +15,8 @@ public class MoreDifficultClient implements ClientModInitializer {
 					.executes(ctx -> {
 						Minecraft mc = Minecraft.getInstance();
 						if (!FabricLoader.getInstance().isModLoaded("cloth-config")) {
-							mc.player.sendSystemMessage(Component.literal("Please install Cloth Config to use this command!"));
+                            assert mc.player != null;
+                            mc.player.sendSystemMessage(Component.literal("Please install Cloth Config to use this command!"));
 							return 1;
 						}
 						mc.execute(() -> mc.setScreen(ClientWindowConfig.createConfigScreen(mc.screen)));

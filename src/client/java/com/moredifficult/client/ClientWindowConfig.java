@@ -135,7 +135,7 @@ public class ClientWindowConfig {
 
         general.addEntry(entryBuilder.startBooleanToggle(
                         Component.literal("Creeper less damage to monsters"),
-                        ServerConfig.addNewMobsInSpawnPool)
+                        ServerConfig.creeperDoesLessDamageToMonsters)
                 .setDefaultValue(true)
                 .setTooltip(Component.literal("Creeper does less damage to monsters with his explosion"))
                 .setSaveConsumer(val -> {
